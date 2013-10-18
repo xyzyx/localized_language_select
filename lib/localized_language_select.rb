@@ -83,12 +83,12 @@ module ActionView
       # as +selected+ to have it marked as the selected option tag.
       # Language codes listed as an array of symbols in +priority_languages+ argument will be listed first
       def localized_language_options_for_select(selected = nil, priority_languages = nil, options = {})
-        language_options = ""
+        language_options = "".html_safe
         if priority_languages
-          language_options += options_for_select(LocalizedLanguageSelect::priority_languages_array(priority_languages), selected)
-          language_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
+          language_options += options_for_select(LocalizedLanguageSelect::priority_languages_array(priority_languages), selected).html_safe
+          language_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n".html_safe
         end
-        return language_options + options_for_select(LocalizedLanguageSelect::localized_languages_array(options), selected)
+        return language_options + options_for_select(LocalizedLanguageSelect::localized_languages_array(options), selected).html_safe
       end
       
     end
